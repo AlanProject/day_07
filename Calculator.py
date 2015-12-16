@@ -47,7 +47,7 @@ def add_sub (string):
     if not re.search('\d+\.?\d*[\+\-]\d+\.?\d*',string):
         return string
     #检索第一个加减表达式
-    s = re.search('\d+\.*\d*[\+,\-]\d+\.*\d*',string).group()
+    s = re.search('\-?\d+\.*\d*[\+,\-]\d+\.*\d*',string).group()
     if re.search('\+',s):
         #以“+”号为分隔符进行分割 并 对分割后的值进行浮点格式化、加法运算
         resuit = float(s.split('+')[0])+float(s.split('+')[1])
