@@ -57,6 +57,7 @@ def add_sub (string):
     elif re.search('-',s):
         #以“-”号为分隔符进行分割 并 对分割后的值进行浮点格式化、减法运算
         if not s.split('-')[0]:
+            # 如果起始位为空则表示第一个数字为负数 比如-1-2 分割后为['',1,2] 那么应该运算第二位(为负要加负号哦)和第三位
             resuit = -float(s.split('-')[1])-float(s.split('-')[2])
         else:
             resuit = float(s.split('-')[0])-float(s.split('-')[1])
