@@ -47,7 +47,8 @@ def add_sub (string):
     if not re.search('\d+\.?\d*[\+\-]\d+\.?\d*',string):
         return string
     #检索第一个加减表达式
-    s = re.search('\-?\d+\.*\d*[\+,\-]\d+\.*\d*',string).group()
+    s = re.search('\-?\d+\.*\d*[\+,\-]\d+\.*\d*', string).group()
+
     if re.search('\+',s):
         #以“+”号为分隔符进行分割 并 对分割后的值进行浮点格式化、加法运算
         resuit = float(s.split('+')[0])+float(s.split('+')[1])
@@ -55,7 +56,10 @@ def add_sub (string):
         string = string.replace(s,str(resuit),1)
     elif re.search('-',s):
         #以“-”号为分隔符进行分割 并 对分割后的值进行浮点格式化、减法运算
-        resuit = float(s.split('-')[0])-float(s.split('-')[1])
+        if not s.split('-')[0]:
+            resuit = -float(s.split('-')[1])-float(s.split('-')[2])
+        else:
+            resuit = float(s.split('-')[0])-float(s.split('-')[1])
         #对表达式中的元素进行替换，将计算结果替换对应的程式
         string = string.replace(s,str(resuit),1)
     #对方法进行迭代计算 并return返回计算的结果
@@ -64,7 +68,7 @@ def compute(string):
     #计算乘除
     string = mul_div(string)
     #计算加减
-    string = add_sub (string)
+    string = add_sub(string)
     #返回值
     return string
 def remove_bracket (string):
